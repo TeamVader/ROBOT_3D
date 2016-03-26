@@ -75,6 +75,122 @@ namespace ModelViewer
 
         #endregion
 
+        #region Angle_Bindings_Axis
+        //property for the humerus sinister movement
+        double m_A1_angle;
+        public double A1_angle
+        {
+            get { return m_A1_angle; }
+            set
+            {
+                move_a1(value);
+                m_A1_angle = value;
+            }
+        }
+
+        void move_a1(double angle)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a1_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle));
+
+            //tells where the point of rotation is
+            a1_transform.CenterX = 0;
+            a1_transform.CenterY = 1;
+            a1_transform.CenterZ = 0;
+
+            //apply transformation
+            KUKA_A1.Transform = a1_transform;
+
+          
+        }
+
+        double m_A2_angle;
+        public double A2_angle
+        {
+            get { return m_A2_angle; }
+            set
+            {
+                move_a2(value);
+                m_A2_angle = value;
+            }
+        }
+
+        void move_a2(double angle)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a2_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
+
+            //tells where the point of rotation is
+            a2_transform.CenterX = 0.35;
+            a2_transform.CenterY = -0.675;
+            a2_transform.CenterZ = -0.675;
+
+            //apply transformation
+            KUKA_A2.Transform = a2_transform;
+
+
+        }
+
+        double m_A3_angle;
+        public double A3_angle
+        {
+            get { return m_A3_angle; }
+            set
+            {
+                move_a3(value);
+                m_A3_angle = value;
+            }
+        }
+
+        void move_a3(double angle)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a3_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
+
+            //tells where the point of rotation is
+            a3_transform.CenterX = 0.35;
+            a3_transform.CenterY = -1.822;
+            a3_transform.CenterZ = -0.675;
+
+            //apply transformation
+            KUKA_A3.Transform = a3_transform;
+
+
+        }
+
+        double m_A4_angle;
+        public double A4_angle
+        {
+            get { return m_A4_angle; }
+            set
+            {
+                move_a4(value);
+                m_A4_angle = value;
+            }
+        }
+
+        void move_a4(double angle)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a4_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), angle));
+
+            //tells where the point of rotation is
+            a4_transform.CenterX = 1.13;
+            a4_transform.CenterY = -1.7840;
+            a4_transform.CenterZ = -0.00;
+
+            //apply transformation
+            KUKA_A4.Transform = a4_transform;
+
+
+        }
+        #endregion
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Window1"/> class.
         /// </summary>
@@ -108,9 +224,9 @@ namespace ModelViewer
             //instanciate Helper box, uncomment to use it
 
             mybox = new BoxVisual3D();
-            mybox.Height = 0.05;
-            mybox.Width = 0.05;
-            mybox.Length = 0.05;
+            mybox.Height = 0.01;
+            mybox.Width = 0.01;
+            mybox.Length = 0.01;
             m_helix_viewport.Children.Add(mybox);
 
             this.MyKUKA = KUKA_KR90;
