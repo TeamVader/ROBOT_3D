@@ -151,8 +151,8 @@ namespace ModelViewer
             RotateTransform3D a3_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
 
             //tells where the point of rotation is
-            a3_transform.CenterX = 0.35;
-            a3_transform.CenterY = -1.822;
+            a3_transform.CenterX = 0.350;
+            a3_transform.CenterY = -1.825;
             a3_transform.CenterZ = -0.675;
 
             //apply transformation
@@ -185,6 +185,34 @@ namespace ModelViewer
 
             //apply transformation
             KUKA_A4.Transform = a4_transform;
+
+
+        }
+
+        double m_A5_angle;
+        public double A5_angle
+        {
+            get { return m_A5_angle; }
+            set
+            {
+                move_a5(value);
+                m_A5_angle = value;
+            }
+        }
+
+        void move_a5(double angle)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a5_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
+
+            //tells where the point of rotation is
+            a5_transform.CenterX = 1.55;
+            a5_transform.CenterY = -1.784;
+            a5_transform.CenterZ = -0.04;
+
+            //apply transformation
+            KUKA_A5.Transform = a5_transform;
 
 
         }
