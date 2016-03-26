@@ -21,6 +21,7 @@ namespace ModelViewer
         //the small box to find pints in the 3D World
         BoxVisual3D mybox;
 
+        //Binding Model
         public Model3D MyKUKA { get; set; }
 
         Model3DGroup KUKA_KR90;
