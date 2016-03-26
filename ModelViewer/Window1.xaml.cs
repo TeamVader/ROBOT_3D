@@ -7,7 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 using HelixToolkit.Wpf;
+using System;
+using System.Threading;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Media3D;
 
 namespace ModelViewer
@@ -76,7 +79,9 @@ namespace ModelViewer
         #endregion
 
         #region Angle_Bindings_Axis
-        //property for the humerus sinister movement
+
+        #region A1_Axis
+
         double m_A1_angle;
         public double A1_angle
         {
@@ -105,6 +110,31 @@ namespace ModelViewer
           
         }
 
+        void animate_a1(double angle,int seconds)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a1_transform = new RotateTransform3D();
+
+            //tells where the point of rotation is
+            a1_transform.CenterX = 0;
+            a1_transform.CenterY = 1;
+            a1_transform.CenterZ = 0;
+
+            //animation
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle);
+            Rotation3DAnimation rotateAnimation =new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            rotateAnimation.DecelerationRatio = 0.8;
+
+            //apply transformation
+            KUKA_A1.Transform = a1_transform;
+            a1_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
+
+        }
+
+        #endregion
+
+        #region A2_Axis
         double m_A2_angle;
         public double A2_angle
         {
@@ -133,6 +163,31 @@ namespace ModelViewer
 
         }
 
+        void animate_a2(double angle, int seconds)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a2_transform = new RotateTransform3D();
+
+            //tells where the point of rotation is
+            a2_transform.CenterX = 0.35;
+            a2_transform.CenterY = -0.675;
+            a2_transform.CenterZ = -0.675;
+
+            //animation
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            rotateAnimation.DecelerationRatio = 0.8;
+
+            //apply transformation
+            KUKA_A2.Transform = a2_transform;
+            a2_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
+
+        }
+
+        #endregion
+
+        #region A3_Axis
         double m_A3_angle;
         public double A3_angle
         {
@@ -160,6 +215,31 @@ namespace ModelViewer
 
 
         }
+
+        void animate_a3(double angle, int seconds)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a3_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
+
+            //tells where the point of rotation is
+            a3_transform.CenterX = 0.350;
+            a3_transform.CenterY = -1.825;
+            a3_transform.CenterZ = -0.675;
+
+            //animation
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            rotateAnimation.DecelerationRatio = 0.8;
+
+            //apply transformation
+            KUKA_A3.Transform = a3_transform;
+            a3_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
+
+        }
+        #endregion
+
+        #region A4_Axis
 
         double m_A4_angle;
         public double A4_angle
@@ -189,6 +269,31 @@ namespace ModelViewer
 
         }
 
+        void animate_a4(double angle, int seconds)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a4_transform = new RotateTransform3D();
+
+            //tells where the point of rotation is
+            a4_transform.CenterX = 1.13;
+            a4_transform.CenterY = -1.7840;
+            a4_transform.CenterZ = -0.00;
+
+
+            //animation
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(1, 0, 0), angle);
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            rotateAnimation.DecelerationRatio = 0.8;
+
+            //apply transformation
+            KUKA_A4.Transform = a4_transform;
+            a4_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
+
+        }
+        #endregion
+
+        #region A5_Axis
         double m_A5_angle;
         public double A5_angle
         {
@@ -216,8 +321,32 @@ namespace ModelViewer
 
 
         }
+
+        void animate_a5(double angle, int seconds)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D a5_transform = new RotateTransform3D();
+
+            //tells where the point of rotation is
+            a5_transform.CenterX = 1.55;
+            a5_transform.CenterY = -1.784;
+            a5_transform.CenterZ = -0.04;
+
+
+            //animation
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            rotateAnimation.DecelerationRatio = 0.8;
+
+            //apply transformation
+            KUKA_A5.Transform = a5_transform;
+            a5_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
+
+        }
         #endregion
 
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Window1"/> class.
@@ -251,6 +380,7 @@ namespace ModelViewer
 
             //instanciate Helper box, uncomment to use it
 
+
             mybox = new BoxVisual3D();
             mybox.Height = 0.01;
             mybox.Width = 0.01;
@@ -260,8 +390,20 @@ namespace ModelViewer
             this.MyKUKA = KUKA_KR90;
 
 
-
+            
             Main_Grid.DataContext = this;
+        }
+
+        private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            animate_a1(30, 5);
+            animate_a2(30, 5);
+            animate_a3(20, 4);
+            animate_a4(20, 4);
+            animate_a5(20, 4);
+
+            // animate_a1(-30, 5);
+           // KUKA_A1.BeginAnimation(A1_angle, testanimation);
         }
     }
 }
