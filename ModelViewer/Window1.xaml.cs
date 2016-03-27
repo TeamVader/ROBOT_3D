@@ -21,6 +21,8 @@ namespace ModelViewer
     public partial class Window1
     {
 
+        System.Windows.Threading.DispatcherTimer _timer;
+        static int counter;
         //the small box to find pints in the 3D World
         BoxVisual3D mybox;
 
@@ -392,18 +394,64 @@ namespace ModelViewer
 
             
             Main_Grid.DataContext = this;
+
+            counter = 0;
+            _timer = new System.Windows.Threading.DispatcherTimer();
+            _timer.Tick += new EventHandler(_timer_Tick);
+            _timer.Interval = new TimeSpan(0, 0, 2);
+            _timer.Start();
         }
 
         private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            animate_a1(30, 5);
-            animate_a2(30, 5);
-            animate_a3(20, 4);
-            animate_a4(20, 4);
-            animate_a5(20, 4);
+            
 
             // animate_a1(-30, 5);
            // KUKA_A1.BeginAnimation(A1_angle, testanimation);
+        }
+
+        void _timer_Tick(object sender, EventArgs e)
+        {
+            switch (counter)
+            {
+                case 0 :
+                    animate_a1(30, 2);
+                    animate_a2(30, 2);
+                    animate_a3(20, 2);
+                     animate_a4(20, 2);
+                     animate_a5(20, 2);
+                     counter++;
+                    break;
+                case 1 : 
+                    animate_a1(0, 2);
+                    animate_a2(0, 2);
+                    animate_a3(0, 2);
+                     animate_a4(0, 2);
+                     animate_a5(0, 2);
+                     counter++;
+                    break;
+                case 2:
+                    
+                    animate_a1(-80, 2);
+                    animate_a2(-30, 2);
+                    animate_a3(-20, 2);
+                     animate_a4(-70, 2);
+                     animate_a5(-20, 2);
+                     counter++;
+                    break;
+                case 3:
+                    animate_a1(0, 2);
+                    animate_a2(0, 2);
+                    animate_a3(0, 2);
+                     animate_a4(0, 2);
+                     animate_a5(0, 2);
+                     counter++;
+                    break;
+                case 4:
+
+                    counter = 0;
+                    break;
+            }
         }
     }
 }
