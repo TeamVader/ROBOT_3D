@@ -11,7 +11,7 @@
         <Slider Value="{Binding A3_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,60,0,0"/>
         <Slider Value="{Binding A4_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,90,0,0"/>
         <Slider Value="{Binding A5_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,120,0,0"/>
-        <Grid Name="boxcontrol" Height="81" VerticalAlignment="Top" Margin="0,150,0,0" Visibility="Visible">
+        <Grid Name="boxcontrol" Height="81" VerticalAlignment="Top" Margin="0,150,0,0" Visibility="Hidden">
             <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxheigth}" Margin="10,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
             <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxwidth}" Margin="99,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
             <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxlength}" Margin="188,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
@@ -21,7 +21,7 @@
             <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxZ}" Margin="188,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
         </Grid>
 
-        <helix:HelixViewport3D Margin="0,220,0,0" x:Name="m_helix_viewport" ZoomExtentsWhenLoaded="True" CameraRotationMode="Trackball" ModelUpDirection="0,0,1">
+        <helix:HelixViewport3D Margin="0,150,0,0" x:Name="m_helix_viewport" ZoomExtentsWhenLoaded="True" CameraRotationMode="Trackball" ModelUpDirection="0,0,1">
             <helix:SunLight/>
 
             <ModelVisual3D Content="{Binding MyKUKA}"></ModelVisual3D>

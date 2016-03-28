@@ -84,6 +84,8 @@ namespace ModelViewer
 
         #region A1_Axis
 
+        AxisAngleRotation3D A1_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
+
         double m_A1_angle;
         public double A1_angle
         {
@@ -125,18 +127,24 @@ namespace ModelViewer
 
             //animation
             AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle);
-            Rotation3DAnimation rotateAnimation =new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
+            rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
+            rotateAnimation.From = A1_rotateAxis;
+            rotateAnimation.To = rotateAxis;
 
             //apply transformation
             KUKA_A1.Transform = a1_transform;
             a1_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
-
+            A1_rotateAxis = rotateAxis;
         }
 
         #endregion
 
         #region A2_Axis
+
+        AxisAngleRotation3D A2_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+
         double m_A2_angle;
         public double A2_angle
         {
@@ -178,18 +186,24 @@ namespace ModelViewer
 
             //animation
             AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
-            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
+            rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
+            rotateAnimation.From = A2_rotateAxis;
+            rotateAnimation.To = rotateAxis;
 
             //apply transformation
             KUKA_A2.Transform = a2_transform;
             a2_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
-
+            A2_rotateAxis = rotateAxis;
         }
 
         #endregion
 
         #region A3_Axis
+
+        AxisAngleRotation3D A3_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+
         double m_A3_angle;
         public double A3_angle
         {
@@ -231,17 +245,22 @@ namespace ModelViewer
 
             //animation
             AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
-            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
+            rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
+            rotateAnimation.From = A3_rotateAxis;
+            rotateAnimation.To = rotateAxis;
 
             //apply transformation
             KUKA_A3.Transform = a3_transform;
             a3_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
-
+            A3_rotateAxis = rotateAxis;
         }
         #endregion
 
         #region A4_Axis
+
+        AxisAngleRotation3D A4_rotateAxis = new AxisAngleRotation3D(new Vector3D(1, 0, 0), 0);
 
         double m_A4_angle;
         public double A4_angle
@@ -285,17 +304,23 @@ namespace ModelViewer
 
             //animation
             AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(1, 0, 0), angle);
-            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
+            rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
+            rotateAnimation.From = A4_rotateAxis;
+            rotateAnimation.To = rotateAxis;
 
             //apply transformation
             KUKA_A4.Transform = a4_transform;
             a4_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
-
+            A4_rotateAxis = rotateAxis;
         }
         #endregion
 
         #region A5_Axis
+
+        AxisAngleRotation3D A5_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+
         double m_A5_angle;
         public double A5_angle
         {
@@ -337,14 +362,21 @@ namespace ModelViewer
 
 
             //animation
-            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
-            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation(rotateAxis, TimeSpan.FromSeconds(seconds));
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1),angle);
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
-
+            rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
+            rotateAnimation.From = A5_rotateAxis;
+            rotateAnimation.To = rotateAxis;
+            
+           /*   DoubleAnimation angleAnimation = new DoubleAnimation();
+               angleAnimation.From = m_A5_angle;
+               angleAnimation.To = angle;
+               angleAnimation.Duration = new System.Windows.Duration(new TimeSpan(0, 0,seconds)); */
             //apply transformation
             KUKA_A5.Transform = a5_transform;
             a5_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
-
+            A5_rotateAxis = rotateAxis;
         }
         #endregion
 
@@ -415,7 +447,7 @@ namespace ModelViewer
             switch (counter)
             {
                 case 0 :
-                    animate_a1(30, 2);
+                    animate_a1(60, 2);
                     animate_a2(30, 2);
                     animate_a3(20, 2);
                      animate_a4(20, 2);
@@ -423,12 +455,13 @@ namespace ModelViewer
                      counter++;
                     break;
                 case 1 : 
-                    animate_a1(0, 2);
-                    animate_a2(0, 2);
-                    animate_a3(0, 2);
-                     animate_a4(0, 2);
-                     animate_a5(0, 2);
-                     counter++;
+                    animate_a1(30, 2);
+                    animate_a2(70, 2);
+                    animate_a3(-40, 2);
+                     animate_a4(80, 2);
+                     animate_a5(80, 2);
+                     
+                    counter++;
                     break;
                 case 2:
                     
@@ -440,12 +473,12 @@ namespace ModelViewer
                      counter++;
                     break;
                 case 3:
-                    animate_a1(0, 2);
-                    animate_a2(0, 2);
-                    animate_a3(0, 2);
-                     animate_a4(0, 2);
-                     animate_a5(0, 2);
-                     counter++;
+                    animate_a1(-20, 2);
+                    animate_a2(30, 2);
+                    animate_a3(-20, 2);
+                     animate_a4(120, 2);
+                     animate_a5(-100, 2);
+                    counter++;
                     break;
                 case 4:
 
