@@ -434,13 +434,14 @@ namespace ModelViewer
             double new_angle_flange = 0;
             double new_angle_counterbalance = 0;
             double new_distance_shaft = 0;
+            double new_angle_shaft = 0;
             new_angle_flange = angle_home_flange + (angle*Math.PI/180);
             //MessageBox.Show(new_angle_flange.ToString());
             new_distance_shaft = Math.Sqrt(Math.Pow( Distance_A2_flange, 2) + Math.Pow(Distance_C_A2, 2) - (2 *  Distance_A2_flange * Distance_C_A2 * Math.Cos(new_angle_flange)));
              //MessageBox.Show(new_distance_shaft.ToString());
 
             new_angle_counterbalance = Math.Asin(((Math.Sin(new_angle_flange) * Distance_A2_flange) / new_distance_shaft));
-
+            new_angle_shaft = 180 - (new_angle_counterbalance * 180 / Math.PI) - new_angle_flange;
             //MessageBox.Show(((Math.Sin(new_angle_flange) * Distance_A2_flange) / new_distance_shaft).ToString());
             // MessageBox.Show(new_angle_counterbalance.ToString());
             //rotate the object by "angle", the vector describes the axis
@@ -463,9 +464,66 @@ namespace ModelViewer
             KUKA_A2_Counterbalance.Transform = Counterbalance_transform;
             Counterbalance_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
             Counterbalance_rotateAxis = rotateAxis;
-            animate_shaft((Distance_C_Shaft-new_distance_shaft)/1000,seconds);
+            //animate_Shaft(new_angle_counterbalance * (180.0 / Math.PI), seconds);
         }
 
+        AxisAngleRotation3D Shaft_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+
+        double m_Shaft_angle;
+        public double Shaft_angle
+        {
+            get { return m_Shaft_angle; }
+            set
+            {
+                move_Shaft(value);
+                m_Shaft_angle = value;
+            }
+        }
+
+        void move_Shaft(double angle)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D Shaft_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
+
+            //tells where the point of rotation is
+            Shaft_transform.CenterX = 0.15;
+            Shaft_transform.CenterY = -0.675;
+            Shaft_transform.CenterZ = -0.675;
+
+            //apply transformation
+            KUKA_A2_Shaft.Transform = Shaft_transform;
+
+
+        }
+
+        void animate_Shaft(double angle, int seconds)
+        {
+
+            //rotate the object by "angle", the vector describes the axis
+            RotateTransform3D Shaft_transform = new RotateTransform3D();
+
+            //tells where the point of rotation is
+            Shaft_transform.CenterX = 0.15;
+            Shaft_transform.CenterY = -0.675;
+            Shaft_transform.CenterZ = -0.675;
+
+            //animation
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
+            Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
+            rotateAnimation.DecelerationRatio = 0.8;
+            rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
+            rotateAnimation.From = Shaft_rotateAxis;
+            rotateAnimation.To = rotateAxis;
+
+            //apply transformation
+            KUKA_A2_Shaft.Transform = Shaft_transform;
+            Shaft_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
+            Shaft_rotateAxis = rotateAxis;
+            //animate_Counterbalance_angle(angle, seconds);
+        }
+
+        /*
         TranslateTransform3D Shaft_transform = new TranslateTransform3D(0, 0, 0);
 
         void animate_shaft(double length, int seconds)
@@ -484,7 +542,7 @@ namespace ModelViewer
             KUKA_A2_Shaft.Transform = Shaft_transform;
             Shaft_transform.BeginAnimation(TranslateTransform3D.OffsetXProperty, vectorAnimation);
             Shaft_transform = new_Shaft_transform;
-        }
+        }*/
 
         #endregion
         #endregion
@@ -511,7 +569,8 @@ namespace ModelViewer
             KUKA_Base.Children.Add(KUKA_A1);
             KUKA_A1.Children.Add(KUKA_A2);
             KUKA_A1.Children.Add(KUKA_A2_Counterbalance);
-            KUKA_A2_Counterbalance.Children.Add(KUKA_A2_Shaft);
+            /*************************************/
+            //KUKA_A2.Children.Add(KUKA_A2_Shaft);
             KUKA_A2.Children.Add(KUKA_A3);
             KUKA_A3.Children.Add(KUKA_A4);
             KUKA_A4.Children.Add(KUKA_A5);
