@@ -464,7 +464,7 @@ namespace ModelViewer
             KUKA_A2_Counterbalance.Transform = Counterbalance_transform;
             Counterbalance_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
             Counterbalance_rotateAxis = rotateAxis;
-            //animate_Shaft(new_angle_counterbalance * (180.0 / Math.PI), seconds);
+            animate_Shaft((-new_angle_counterbalance * (180.0 / Math.PI))-angle, seconds);
         }
 
         AxisAngleRotation3D Shaft_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
@@ -570,7 +570,7 @@ namespace ModelViewer
             KUKA_A1.Children.Add(KUKA_A2);
             KUKA_A1.Children.Add(KUKA_A2_Counterbalance);
             /*************************************/
-            //KUKA_A2.Children.Add(KUKA_A2_Shaft);
+            KUKA_A2.Children.Add(KUKA_A2_Shaft);
             KUKA_A2.Children.Add(KUKA_A3);
             KUKA_A3.Children.Add(KUKA_A4);
             KUKA_A4.Children.Add(KUKA_A5);
