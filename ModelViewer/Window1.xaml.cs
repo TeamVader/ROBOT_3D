@@ -1,4 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+﻿using EasyModbus;
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Window1.xaml.cs" company="Helix Toolkit">
 //   Copyright (c) 2014 Helix Toolkit contributors
 // </copyright>
@@ -23,6 +24,10 @@ namespace ModelViewer
     {
 
         System.Windows.Threading.DispatcherTimer _timer;
+        System.Windows.Threading.DispatcherTimer _update_timer;
+
+        public ModbusClient modbusClient;
+
         static int counter;
         //the small box to find pints in the 3D World
         BoxVisual3D mybox;
@@ -597,11 +602,18 @@ namespace ModelViewer
             
             Main_Grid.DataContext = this;
 
+            modbusClient = new ModbusClient("127.0.0.1", 502); 
+
             counter = 0;
             _timer = new System.Windows.Threading.DispatcherTimer();
             _timer.Tick += new EventHandler(_timer_Tick);
             _timer.Interval = new TimeSpan(0, 0, 2);
-            _timer.Start();
+            //_timer.Start();
+
+            _update_timer = new System.Windows.Threading.DispatcherTimer();
+            _update_timer.Tick += new EventHandler(_update_timer_Tick);
+            _update_timer.Interval = new TimeSpan(0, 0, 0,0,100);
+            _update_timer.Start();
         }
 
         private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -652,9 +664,34 @@ namespace ModelViewer
                     break;
                 case 4:
 
-                    counter = 0;
+                    counter = 5;
                     break;
             }
         }
+
+        void _update_timer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                   //Ip-Address and Port of Modbus-TCP-Server
+                modbusClient.Connect();
+
+                //Read 10 Coils from Server, starting with address 10
+                int[] readHoldingRegisters = modbusClient.ReadHoldingRegisters(0, 6);
+                move_a1(readHoldingRegisters[0]);
+                move_a2(readHoldingRegisters[1]);
+                move_a3(readHoldingRegisters[2]);
+                move_a4(readHoldingRegisters[3]);
+                move_a5(readHoldingRegisters[4]);
+                
+                modbusClient.Disconnect();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+
+        }
+        
     }
 }
