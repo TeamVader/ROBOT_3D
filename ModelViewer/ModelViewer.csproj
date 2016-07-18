@@ -137,8 +137,10 @@
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="FileDialogService.cs" />
     <Compile Include="IFileDialogService.cs" />
+    <Compile Include="KUKA.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Observable.cs" />
+    <Compile Include="STAUBLI.cs" />
     <Compile Include="VisualViewModel.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
