@@ -86,16 +86,17 @@ namespace ModelViewer
         {
             this.InitializeComponent();
 
+            #region KUKA INIT
             KUKA_KR90 = new Model3DGroup();
-          
-            KUKA_Base= mi.Load(@"Models/KUKA_Base.3ds");
-            KUKA_A1= mi.Load(@"Models/KUKA_A1.3ds");
-            KUKA_A2= mi.Load(@"Models/KUKA_A2.3ds");
-            KUKA_A3= mi.Load(@"Models/KUKA_A3.3ds");
-            KUKA_A4= mi.Load(@"Models/KUKA_A4.3ds");
-            KUKA_A5= mi.Load(@"Models/KUKA_A5.3ds");
-            KUKA_A2_Counterbalance = mi.Load(@"Models/KUKA_Counterbalancing_A2.3ds");
-            KUKA_A2_Shaft = mi.Load(@"Models/KUKA_Shaft_A2.3ds");
+            
+            KUKA_Base = mi.Load(@"Models/KUKA/KUKA_Base.3ds");
+            KUKA_A1 = mi.Load(@"Models/KUKA/KUKA_A1.3ds");
+            KUKA_A2 = mi.Load(@"Models/KUKA/KUKA_A2.3ds");
+            KUKA_A3 = mi.Load(@"Models/KUKA/KUKA_A3.3ds");
+            KUKA_A4 = mi.Load(@"Models/KUKA/KUKA_A4.3ds");
+            KUKA_A5 = mi.Load(@"Models/KUKA/KUKA_A5.3ds");
+            KUKA_A2_Counterbalance = mi.Load(@"Models/KUKA/KUKA_Counterbalancing_A2.3ds");
+            KUKA_A2_Shaft = mi.Load(@"Models/KUKA/KUKA_Shaft_A2.3ds");
 
             KUKA_KR90.Children.Add(KUKA_Base);
             KUKA_Base.Children.Add(KUKA_A1);
@@ -113,10 +114,12 @@ namespace ModelViewer
             myRotateTransform.CenterY = 0;
             myRotateTransform.CenterZ = 0;
             KUKA_KR90.Transform = myRotateTransform;
-
+            #endregion
             //instanciate Helper box, uncomment to use it
 
-
+            #region STAUBLI INIT
+            Staubli_TX60 = new Model3DGroup();
+            #endregion
             mybox = new BoxVisual3D();
             mybox.Height = 0.01;
             mybox.Width = 0.01;
@@ -124,6 +127,7 @@ namespace ModelViewer
             m_helix_viewport.Children.Add(mybox);
 
             this.MyKUKA = KUKA_KR90;
+            this.MyStaubli = Staubli_TX60;
 
 
             

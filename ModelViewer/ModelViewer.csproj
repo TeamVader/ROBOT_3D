@@ -167,30 +167,37 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="Models\KUKA_A1.3ds">
+    <None Include="Models\KUKA\KUKA_A1.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Models\KUKA_A2.3ds">
+    <None Include="Models\KUKA\KUKA_A2.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Models\KUKA_A3.3ds">
+    <None Include="Models\KUKA\KUKA_A3.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Models\KUKA_A4.3ds">
+    <None Include="Models\KUKA\KUKA_A4.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Models\KUKA_A5.3ds">
+    <None Include="Models\KUKA\KUKA_A5.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Models\KUKA_BASE.3ds">
+    <None Include="Models\KUKA\KUKA_BASE.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Models\KUKA_Counterbalancing_A2.3ds">
+    <None Include="Models\KUKA\KUKA_Counterbalancing_A2.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Models\KUKA_Shaft_A2.3ds">
+    <None Include="Models\KUKA\KUKA_Shaft_A2.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Models\STAUBLI\TX60_A1.3ds" />
+    <None Include="Models\STAUBLI\TX60_A2.3ds" />
+    <None Include="Models\STAUBLI\TX60_A3.3ds" />
+    <None Include="Models\STAUBLI\TX60_A4.3ds" />
+    <None Include="Models\STAUBLI\TX60_A5.3ds" />
+    <None Include="Models\STAUBLI\TX60_A6.3ds" />
+    <None Include="Models\STAUBLI\TX60_Base.3ds" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

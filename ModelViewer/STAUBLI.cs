@@ -73,13 +73,13 @@ namespace ModelViewer
             Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
             rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
-            rotateAnimation.From = A1_rotateAxis;
+            rotateAnimation.From = Staubli_A1_rotateAxis;
             rotateAnimation.To = rotateAxis;
 
             //apply transformation
             Staubli_A1.Transform = a1_transform;
             a1_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
-            A1_rotateAxis = rotateAxis;
+            Staubli_A1_rotateAxis = rotateAxis;
         }
 
         #endregion
@@ -132,13 +132,13 @@ namespace ModelViewer
             Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
             rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
-            rotateAnimation.From = A2_rotateAxis;
+            rotateAnimation.From = Staubli_A2_rotateAxis;
             rotateAnimation.To = rotateAxis;
 
             //apply transformation
             Staubli_A2.Transform = a2_transform;
             a2_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
-            A2_rotateAxis = rotateAxis;
+            Staubli_A2_rotateAxis = rotateAxis;
             
         }
 
@@ -192,13 +192,13 @@ namespace ModelViewer
             Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
             rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
-            rotateAnimation.From = A3_rotateAxis;
+            rotateAnimation.From = Staubli_A3_rotateAxis;
             rotateAnimation.To = rotateAxis;
 
             //apply transformation
             Staubli_A3.Transform = a3_transform;
             a3_transform.BeginAnimation(RotateTransform3D.RotationProperty, rotateAnimation);
-            A3_rotateAxis = rotateAxis;
+            Staubli_A3_rotateAxis = rotateAxis;
         }
         #endregion
 
