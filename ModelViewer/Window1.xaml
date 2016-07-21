@@ -24,7 +24,7 @@
         <helix:HelixViewport3D Margin="0,150,0,0" x:Name="m_helix_viewport" ZoomExtentsWhenLoaded="True" CameraRotationMode="Trackball" ModelUpDirection="0,0,1">
             <helix:SunLight/>
 
-            <ModelVisual3D Content="{Binding MyKUKA}"></ModelVisual3D>
+            <ModelVisual3D Content="{Binding MyStaubli}"></ModelVisual3D>
             <!--<ModelVisual3D Content="{Binding CurrentModel}"/>-->
             <!--<helix:FileModelVisual3D Source="{Binding CurrentModelPath, Mode=TwoWay}" ModelLoaded="ModelLoaded"/>-->
             <!--<helix:Expander3D Expansion="{Binding Expansion}" Content="{Binding CurrentModel}"/>-->

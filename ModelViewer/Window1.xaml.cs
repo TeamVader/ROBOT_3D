@@ -119,14 +119,32 @@ namespace ModelViewer
 
             #region STAUBLI INIT
             Staubli_TX60 = new Model3DGroup();
+            Staubli_Base = mi.Load(@"Models/STAUBLI/TX60_Base.3ds");
+            Staubli_A1 = mi.Load(@"Models/STAUBLI/TX60_A1.3ds");
+            Staubli_A2 = mi.Load(@"Models/STAUBLI/TX60_A2.3ds");
+            Staubli_A3 = mi.Load(@"Models/STAUBLI/TX60_A3.3ds");
+            Staubli_A4 = mi.Load(@"Models/STAUBLI/TX60_A4.3ds");
+            Staubli_A5 = mi.Load(@"Models/STAUBLI/TX60_A5.3ds");
+            Staubli_A6 = mi.Load(@"Models/STAUBLI/TX60_A6.3ds");
+
+
+            Staubli_TX60.Children.Add(Staubli_Base);
+            Staubli_Base.Children.Add(Staubli_A1);
+            Staubli_A1.Children.Add(Staubli_A2);
+            Staubli_A2.Children.Add (Staubli_A3);
+            Staubli_A3.Children.Add( Staubli_A4);
+            Staubli_A4.Children.Add(Staubli_A5);
+            Staubli_A5.Children.Add(Staubli_A6);
+
             #endregion
+
             mybox = new BoxVisual3D();
             mybox.Height = 0.01;
             mybox.Width = 0.01;
             mybox.Length = 0.01;
             m_helix_viewport.Children.Add(mybox);
 
-            this.MyKUKA = KUKA_KR90;
+            //this.MyKUKA = KUKA_KR90;
             this.MyStaubli = Staubli_TX60;
 
 
@@ -144,7 +162,7 @@ namespace ModelViewer
             _update_timer = new System.Windows.Threading.DispatcherTimer();
             _update_timer.Tick += new EventHandler(_update_timer_Tick);
             _update_timer.Interval = new TimeSpan(0, 0, 0,0,100);
-            _update_timer.Start();
+           // _update_timer.Start();
         }
 
         private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)

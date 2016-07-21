@@ -191,13 +191,27 @@
     <None Include="Models\KUKA\KUKA_Shaft_A2.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Models\STAUBLI\TX60_A1.3ds" />
-    <None Include="Models\STAUBLI\TX60_A2.3ds" />
-    <None Include="Models\STAUBLI\TX60_A3.3ds" />
-    <None Include="Models\STAUBLI\TX60_A4.3ds" />
-    <None Include="Models\STAUBLI\TX60_A5.3ds" />
-    <None Include="Models\STAUBLI\TX60_A6.3ds" />
-    <None Include="Models\STAUBLI\TX60_Base.3ds" />
+    <None Include="Models\STAUBLI\TX60_A1.3ds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Models\STAUBLI\TX60_A2.3ds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Models\STAUBLI\TX60_A3.3ds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Models\STAUBLI\TX60_A4.3ds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Models\STAUBLI\TX60_A5.3ds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Models\STAUBLI\TX60_A6.3ds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Models\STAUBLI\TX60_Base.3ds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
