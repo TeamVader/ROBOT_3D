@@ -27,7 +27,7 @@ namespace ModelViewer
 
         #region A1_Axis
 
-        AxisAngleRotation3D Staubli_A1_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
+        AxisAngleRotation3D Staubli_A1_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
 
         double Staubli_m_A1_angle;
         public double Staubli_A1_angle
@@ -35,8 +35,8 @@ namespace ModelViewer
             get { return Staubli_m_A1_angle; }
             set
             {
-                move_a1(value);
-                m_A1_angle = value;
+                Staubli_move_a1(value);
+                Staubli_m_A1_angle = value;
             }
         }
 
@@ -44,12 +44,12 @@ namespace ModelViewer
         {
 
             //rotate the object by "angle", the vector describes the axis
-            RotateTransform3D a1_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle));
+            RotateTransform3D a1_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
 
             //tells where the point of rotation is
-            a1_transform.CenterX = 0;
-            a1_transform.CenterY = 1;
-            a1_transform.CenterZ = 0;
+            a1_transform.CenterX = 0.0334;
+            a1_transform.CenterY = -0.0448;
+            a1_transform.CenterZ = 1;
 
             //apply transformation
             Staubli_A1.Transform = a1_transform;
@@ -64,12 +64,12 @@ namespace ModelViewer
             RotateTransform3D a1_transform = new RotateTransform3D();
 
             //tells where the point of rotation is
-            a1_transform.CenterX = 0;
-            a1_transform.CenterY = 1;
-            a1_transform.CenterZ = 0;
+            a1_transform.CenterX = 0.0334;
+            a1_transform.CenterY = -0.0448;
+            a1_transform.CenterZ = 1;
 
             //animation
-            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle);
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
             Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
             rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
@@ -86,7 +86,7 @@ namespace ModelViewer
 
         #region A2_Axis
 
-        AxisAngleRotation3D Staubli_A2_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+        AxisAngleRotation3D Staubli_A2_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
 
         double Staubli_m_A2_angle;
         public double Staubli_A2_angle
@@ -103,12 +103,12 @@ namespace ModelViewer
         {
 
             //rotate the object by "angle", the vector describes the axis
-            RotateTransform3D a2_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
+            RotateTransform3D a2_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle));
 
             //tells where the point of rotation is
-            a2_transform.CenterX = 0.35;
-            a2_transform.CenterY = -0.675;
-            a2_transform.CenterZ = -0.675;
+            a2_transform.CenterX = 0.0334;
+            a2_transform.CenterY = 0.0711;
+            a2_transform.CenterZ = 0.3230;
 
             //apply transformation
             Staubli_A2.Transform = a2_transform;
@@ -123,12 +123,12 @@ namespace ModelViewer
             RotateTransform3D a2_transform = new RotateTransform3D();
 
             //tells where the point of rotation is
-            a2_transform.CenterX = 0.35;
-            a2_transform.CenterY = -0.675;
-            a2_transform.CenterZ = -0.675;
+            a2_transform.CenterX = 0.0334;
+            a2_transform.CenterY = 0.0711;
+            a2_transform.CenterZ = 0.3230;
 
             //animation
-            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle);
             Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
             rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
@@ -146,7 +146,7 @@ namespace ModelViewer
 
         #region A3_Axis
 
-        AxisAngleRotation3D Staubli_A3_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+        AxisAngleRotation3D Staubli_A3_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
 
         double Staubli_m_A3_angle;
         public double Staubli_A3_angle
@@ -163,12 +163,12 @@ namespace ModelViewer
         {
 
             //rotate the object by "angle", the vector describes the axis
-            RotateTransform3D a3_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
+            RotateTransform3D a3_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle));
 
             //tells where the point of rotation is
-            a3_transform.CenterX = 0.350;
-            a3_transform.CenterY = -1.825;
-            a3_transform.CenterZ = -0.675;
+            a3_transform.CenterX = 0.0334;
+            a3_transform.CenterY = 0.0711;
+            a3_transform.CenterZ = 0.5727;
 
             //apply transformation
             Staubli_A3.Transform = a3_transform;
@@ -180,15 +180,15 @@ namespace ModelViewer
         {
 
             //rotate the object by "angle", the vector describes the axis
-            RotateTransform3D a3_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
+            RotateTransform3D a3_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle));
 
             //tells where the point of rotation is
-            a3_transform.CenterX = 0.350;
-            a3_transform.CenterY = -1.825;
-            a3_transform.CenterZ = -0.675;
+            a3_transform.CenterX = 0.0334;
+            a3_transform.CenterY = 0.0711;
+            a3_transform.CenterZ = 0.5727;
 
             //animation
-            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle);
             Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
             rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
@@ -204,7 +204,7 @@ namespace ModelViewer
 
         #region A4_Axis
 
-        AxisAngleRotation3D Staubli_A4_rotateAxis = new AxisAngleRotation3D(new Vector3D(1, 0, 0), 0);
+        AxisAngleRotation3D Staubli_A4_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
 
         double Staubli_m_A4_angle;
         public double Staubli_A4_angle
@@ -221,12 +221,12 @@ namespace ModelViewer
         {
 
             //rotate the object by "angle", the vector describes the axis
-            RotateTransform3D a4_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), angle));
+            RotateTransform3D a4_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
 
             //tells where the point of rotation is
-            a4_transform.CenterX = 1.13;
-            a4_transform.CenterY = -1.7840;
-            a4_transform.CenterZ = -0.00;
+            a4_transform.CenterX = 0.0334;
+            a4_transform.CenterY = -0.0276;
+            a4_transform.CenterZ = 0.6636;
 
             //apply transformation
             Staubli_A4.Transform = a4_transform;
@@ -241,13 +241,13 @@ namespace ModelViewer
             RotateTransform3D a4_transform = new RotateTransform3D();
 
             //tells where the point of rotation is
-            a4_transform.CenterX = 1.13;
-            a4_transform.CenterY = -1.7840;
-            a4_transform.CenterZ = -0.00;
+            a4_transform.CenterX = 0.0334;
+            a4_transform.CenterY = -0.0276;
+            a4_transform.CenterZ = 0.6636;
 
 
             //animation
-            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(1, 0, 0), angle);
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
             Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
             rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
@@ -263,7 +263,7 @@ namespace ModelViewer
 
         #region A5_Axis
 
-        AxisAngleRotation3D Staubli_A5_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+        AxisAngleRotation3D Staubli_A5_rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
 
         double Staubli_m_A5_angle;
         public double Staubli_A5_angle
@@ -280,12 +280,12 @@ namespace ModelViewer
         {
 
             //rotate the object by "angle", the vector describes the axis
-            RotateTransform3D a5_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
+            RotateTransform3D a5_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle));
 
             //tells where the point of rotation is
-            a5_transform.CenterX = 1.55;
-            a5_transform.CenterY = -1.784;
-            a5_transform.CenterZ = -0.04;
+            a5_transform.CenterX = 0.0334;
+            a5_transform.CenterY = -0.0090;
+            a5_transform.CenterZ = 0.8397;
 
             //apply transformation
             Staubli_A5.Transform = a5_transform;
@@ -300,13 +300,13 @@ namespace ModelViewer
             RotateTransform3D a5_transform = new RotateTransform3D();
 
             //tells where the point of rotation is
-            a5_transform.CenterX = 1.55;
-            a5_transform.CenterY = -1.784;
-            a5_transform.CenterZ = -0.04;
+            a5_transform.CenterX = 0.0334;
+            a5_transform.CenterY = -0.0090;
+            a5_transform.CenterZ = 0.8397;
 
 
             //animation
-            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle);
+            AxisAngleRotation3D rotateAxis = new AxisAngleRotation3D(new Vector3D(0, 1, 0), angle);
             Rotation3DAnimation rotateAnimation = new Rotation3DAnimation();
             rotateAnimation.DecelerationRatio = 0.8;
             rotateAnimation.Duration = TimeSpan.FromSeconds(seconds);
@@ -346,9 +346,9 @@ namespace ModelViewer
             RotateTransform3D a6_transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), angle));
 
             //tells where the point of rotation is
-            a6_transform.CenterX = 1.55;
-            a6_transform.CenterY = -1.784;
-            a6_transform.CenterZ = -0.04;
+            a6_transform.CenterX = 0.0334;
+            a6_transform.CenterY = -0.0276;
+            a6_transform.CenterZ = 0.9000;
 
             //apply transformation
             Staubli_A6.Transform = a6_transform;
@@ -363,9 +363,9 @@ namespace ModelViewer
             RotateTransform3D a6_transform = new RotateTransform3D();
 
             //tells where the point of rotation is
-            a6_transform.CenterX = 1.55;
-            a6_transform.CenterY = -1.784;
-            a6_transform.CenterZ = -0.04;
+            a6_transform.CenterX = 0.0334;
+            a6_transform.CenterY = -0.0276;
+            a6_transform.CenterZ = 0.9000;
 
 
             //animation

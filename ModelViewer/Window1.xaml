@@ -6,11 +6,11 @@
         xmlns:modelViewer="clr-namespace:ModelViewer" Title="{Binding ApplicationTitle}" MinWidth="900" MinHeight="600" Height="600" Width="900" Background="{x:Null}" Loaded="Window_Loaded">
 
     <Grid x:Name="Main_Grid" Background="White">
-        <Slider Value="{Binding A1_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" />
-        <Slider Value="{Binding A2_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,30,0,0"/>
-        <Slider Value="{Binding A3_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,60,0,0"/>
-        <Slider Value="{Binding A4_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,90,0,0"/>
-        <Slider Value="{Binding A5_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,120,0,0"/>
+        <Slider Value="{Binding Staubli_A1_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" />
+        <Slider Value="{Binding Staubli_A2_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,30,0,0"/>
+        <Slider Value="{Binding Staubli_A3_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,60,0,0"/>
+        <Slider Value="{Binding Staubli_A4_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,90,0,0"/>
+        <Slider Value="{Binding Staubli_A5_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,120,0,0"/>
         <Grid Name="boxcontrol" Height="81" VerticalAlignment="Top" Margin="0,150,0,0" Visibility="Hidden">
             <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxheigth}" Margin="10,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
             <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxwidth}" Margin="99,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />

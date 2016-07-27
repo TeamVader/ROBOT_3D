@@ -157,7 +157,7 @@ namespace ModelViewer
             _timer = new System.Windows.Threading.DispatcherTimer();
             _timer.Tick += new EventHandler(_timer_Tick);
             _timer.Interval = new TimeSpan(0, 0, 2);
-            //_timer.Start();
+            _timer.Start();
 
             _update_timer = new System.Windows.Threading.DispatcherTimer();
             _update_timer.Tick += new EventHandler(_update_timer_Tick);
@@ -178,37 +178,40 @@ namespace ModelViewer
             switch (counter)
             {
                 case 0 :
-                    animate_a1(60, 2);
-                    animate_a2(30, 2);
-                    animate_a3(20, 2);
-                     animate_a4(20, 2);
-                     animate_a5(20, 2);
+                    Staubli_animate_a1(60, 2);
+                    Staubli_animate_a2(30, 2);
+                    Staubli_animate_a3(20, 2);
+                    Staubli_animate_a4(20, 2);
+                    Staubli_animate_a5(20, 2);
+                    Staubli_animate_a6(10, 2);
                      counter++;
                     break;
-                case 1 : 
-                    animate_a1(30, 2);
-                    animate_a2(70, 2);
-                    animate_a3(-40, 2);
-                     animate_a4(80, 2);
-                     animate_a5(80, 2);
-                     
+                case 1 :
+                    Staubli_animate_a1(30, 2);
+                    Staubli_animate_a2(70, 2);
+                    Staubli_animate_a3(-40, 2);
+                    Staubli_animate_a4(80, 2);
+                    Staubli_animate_a5(80, 2);
+                    Staubli_animate_a6(70, 2);
                     counter++;
                     break;
                 case 2:
-                    
-                    animate_a1(-80, 2);
-                    animate_a2(-30, 2);
-                    animate_a3(-20, 2);
-                     animate_a4(-70, 2);
-                     animate_a5(-20, 2);
+
+                    Staubli_animate_a1(-80, 2);
+                    Staubli_animate_a2(-30, 2);
+                    Staubli_animate_a3(-20, 2);
+                    Staubli_animate_a4(-70, 2);
+                    Staubli_animate_a5(-20, 2);
+                    Staubli_animate_a6(-20, 2);
                      counter++;
                     break;
                 case 3:
-                    animate_a1(-20, 2);
-                    animate_a2(30, 2);
-                    animate_a3(-20, 2);
-                     animate_a4(120, 2);
-                     animate_a5(-100, 2);
+                    Staubli_animate_a1(-20, 2);
+                    Staubli_animate_a2(30, 2);
+                    Staubli_animate_a3(-20, 2);
+                    Staubli_animate_a4(120, 2);
+                    Staubli_animate_a5(-100, 2);
+                    Staubli_animate_a6(-100, 2);
                     counter++;
                     break;
                 case 4:
