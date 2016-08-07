@@ -9,8 +9,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 using HelixToolkit.Wpf;
 using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Media3D;
@@ -28,6 +30,8 @@ namespace ModelViewer
 
         public ModbusClient modbusClient;
 
+
+    
         static int counter;
         //the small box to find pints in the 3D World
         BoxVisual3D mybox;
@@ -77,14 +81,20 @@ namespace ModelViewer
 
         #endregion
 
-        
 
+        #region Window
         /// <summary>
         /// Initializes a new instance of the <see cref="Window1"/> class.
         /// </summary>
         public Window1()
         {
             this.InitializeComponent();
+
+
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, this.OnCloseWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, this.OnMaximizeWindow, this.OnCanResizeWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, this.OnMinimizeWindow, this.OnCanMinimizeWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, this.OnRestoreWindow, this.OnCanResizeWindow));
 
             #region KUKA INIT
             KUKA_KR90 = new Model3DGroup();
@@ -142,13 +152,13 @@ namespace ModelViewer
             mybox.Height = 0.01;
             mybox.Width = 0.01;
             mybox.Length = 0.01;
-            m_helix_viewport.Children.Add(mybox);
+            //m_helix_viewport.Children.Add(mybox);
 
             //this.MyKUKA = KUKA_KR90;
             this.MyStaubli = Staubli_TX60;
 
-
-            
+           
+           
             Main_Grid.DataContext = this;
 
             modbusClient = new ModbusClient("127.0.0.1", 502); 
@@ -157,21 +167,64 @@ namespace ModelViewer
             _timer = new System.Windows.Threading.DispatcherTimer();
             _timer.Tick += new EventHandler(_timer_Tick);
             _timer.Interval = new TimeSpan(0, 0, 2);
-            _timer.Start();
+           // _timer.Start();
 
             _update_timer = new System.Windows.Threading.DispatcherTimer();
             _update_timer.Tick += new EventHandler(_update_timer_Tick);
             _update_timer.Interval = new TimeSpan(0, 0, 0,0,100);
-           // _update_timer.Start();
+            _update_timer.Start();
         }
 
         private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            
 
+            
             // animate_a1(-30, 5);
            // KUKA_A1.BeginAnimation(A1_angle, testanimation);
         }
+
+        private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = this.ResizeMode == ResizeMode.CanResize || this.ResizeMode == ResizeMode.CanResizeWithGrip;
+        }
+
+        private void OnCanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = this.ResizeMode != ResizeMode.NoResize;
+        }
+
+        private void OnCloseWindow(object target, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+            Application.Current.Shutdown();
+            
+        }
+
+        private void OnMaximizeWindow(object target, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.MaximizeWindow(this);
+        }
+
+        private void OnMinimizeWindow(object target, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.MinimizeWindow(this);
+        }
+
+        private void OnRestoreWindow(object target, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.RestoreWindow(this);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+       
+
+        #endregion
 
         void _timer_Tick(object sender, EventArgs e)
         {
@@ -227,23 +280,28 @@ namespace ModelViewer
             {
                    //Ip-Address and Port of Modbus-TCP-Server
                 modbusClient.Connect();
-
+                this.TextConnection.Text = "Connected to Server";
+                this.Connected.BorderBrush = Brushes.Green;
                 //Read 10 Coils from Server, starting with address 10
                 int[] readHoldingRegisters = modbusClient.ReadHoldingRegisters(0, 6);
-                move_a1(readHoldingRegisters[0]);
-                move_a2(readHoldingRegisters[1]);
-                move_a3(readHoldingRegisters[2]);
-                move_a4(readHoldingRegisters[3]);
-                move_a5(readHoldingRegisters[4]);
-                
+                Staubli_move_a1(readHoldingRegisters[0]);
+                Staubli_move_a2(readHoldingRegisters[1]);
+                Staubli_move_a3(readHoldingRegisters[2]);
+                Staubli_move_a4(readHoldingRegisters[3]);
+                Staubli_move_a5(readHoldingRegisters[4]);
+                Staubli_move_a6(readHoldingRegisters[5]);
                 modbusClient.Disconnect();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                this.TextConnection.Text = "Connection Refused to Server";
+                this.Connected.BorderBrush = Brushes.Red;
+                //MessageBox.Show(ex.StackTrace);
             }
 
         }
+
+        
         
     }
 }
