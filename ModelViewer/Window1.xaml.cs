@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Media3D;
+using System.Windows.Threading;
 
 namespace ModelViewer
 {
@@ -29,7 +30,7 @@ namespace ModelViewer
         System.Windows.Threading.DispatcherTimer _update_timer;
 
         public ModbusClient modbusClient;
-
+        public string ip_modbus = "127.0.0.1";
 
     
         static int counter;
@@ -161,18 +162,19 @@ namespace ModelViewer
            
             Main_Grid.DataContext = this;
 
-            modbusClient = new ModbusClient("127.0.0.1", 502); 
+            modbusClient = new ModbusClient(ip_modbus, 502); 
 
             counter = 0;
-            _timer = new System.Windows.Threading.DispatcherTimer();
+            _timer = new System.Windows.Threading.DispatcherTimer(DispatcherPriority.Render);
             _timer.Tick += new EventHandler(_timer_Tick);
             _timer.Interval = new TimeSpan(0, 0, 2);
            // _timer.Start();
 
-            _update_timer = new System.Windows.Threading.DispatcherTimer();
+            _update_timer = new System.Windows.Threading.DispatcherTimer(DispatcherPriority.Render);
             _update_timer.Tick += new EventHandler(_update_timer_Tick);
             _update_timer.Interval = new TimeSpan(0, 0, 0,0,100);
             _update_timer.Start();
+            
         }
 
         private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -278,8 +280,13 @@ namespace ModelViewer
         {
             try
             {
+                ConsoleOutput.Items.Add("Try to Connect to IP : " + ip_modbus + " Port 502 " + DateTime.Now);
+                if (ConsoleOutput.Items.Count >= 15)
+                {
+                    ConsoleOutput.Items.RemoveAt(0);
+                }
                    //Ip-Address and Port of Modbus-TCP-Server
-                modbusClient.Connect();
+               // modbusClient.Connect();
                 this.TextConnection.Text = "Connected to Server";
                 this.Connected.BorderBrush = Brushes.Green;
                 //Read 10 Coils from Server, starting with address 10

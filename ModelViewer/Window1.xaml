@@ -93,8 +93,8 @@
             <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxY}" Margin="99,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
             <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxZ}" Margin="188,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
         </Grid>
-
-        <helix:HelixViewport3D Margin="0,150,0,0" x:Name="m_helix_viewport" ZoomExtentsWhenLoaded="True" CameraRotationMode="Trackball" ModelUpDirection="0,0,1">
+            <ListView x:Name="ConsoleOutput" Height="300" BorderBrush="Transparent" Width="400" Opacity="0.8" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Margin="0,150,0,0" Foreground="#FF505050" FontFamily="Segoe UI Light"></ListView>
+                <helix:HelixViewport3D Margin="0,150,0,0" x:Name="m_helix_viewport" ZoomExtentsWhenLoaded="True" CameraRotationMode="Trackball" ModelUpDirection="0,0,1">
             <helix:SunLight/>
 
             <ModelVisual3D Content="{Binding MyStaubli}"></ModelVisual3D>
