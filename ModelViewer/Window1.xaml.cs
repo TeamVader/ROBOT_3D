@@ -296,6 +296,7 @@ namespace ModelViewer
                     Staubli_move_a5(readHoldingRegisters[4]);
                     Staubli_move_a6(readHoldingRegisters[5]); 
                      modbusClient.Disconnect();
+                    //Add Visual output
                      ConsoleOutput.Items.Add("J1: " + readHoldingRegisters[0].ToString() + " J2: " + readHoldingRegisters[1].ToString() + " J3: " + readHoldingRegisters[2].ToString() + " J4: " + readHoldingRegisters[3].ToString() + " J5: " + readHoldingRegisters[4].ToString() + " J6: " + readHoldingRegisters[5].ToString());
                     if (ConsoleOutput.Items.Count >= 15)
                     {
