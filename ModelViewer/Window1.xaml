@@ -14,99 +14,112 @@
             <RowDefinition Height="*" />
 
         </Grid.RowDefinitions>
-       
-        <Label VerticalContentAlignment="Top" Grid.Row="0" x:Name="Label_Title" Foreground="White" FontSize="12" Content="ROBOTIC SIMULATION" />
-        <Border x:Name="Connected"  BorderThickness="1" CornerRadius="4" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="20"  Grid.Row="0"  >
-            <Border.Style>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="BorderBrush"  Value="Red">
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="0" x:Name="Label_Title" Foreground="White" FontSize="12" Content="ROBOTIC SIMULATION" />
+            <modelViewer:IPControl x:Name="IPControl" Grid.Row="0" Grid.Column="2" Width="200" Foreground="White" Height="20" Background="Transparent" ></modelViewer:IPControl>
+            <Button x:Name="buttonconnect" Grid.Column="3"  Content="Connect" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100"  OpacityMask="{x:Null}" Opacity="0.8"  Style="{StaticResource Bluebutton}" FontWeight="Normal" FontFamily="SansSerif" Foreground="#FFFCFCFC"  Height="18" Grid.Row="0" Click="buttonconnect_Click"/>
+            <Label Grid.Column="1" Content="IP Adress" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" Width="80"></Label>
+            <Border x:Name="Connected"  BorderThickness="1" CornerRadius="4" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="20"  Grid.Row="0"  Grid.Column="4">
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="BorderBrush"  Value="Red">
 
-                    </Setter>
-                   
-                </Style>
+                        </Setter>
 
-            </Border.Style>
-            <TextBlock x:Name="TextConnection" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" >
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Text" Value="No Recording"></Setter>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Recording}" Value="True">
-                                <Setter Property="Text" Value="Active Recording"/>
-                            </DataTrigger>
-                        </Style.Triggers>
                     </Style>
-                </TextBlock.Style>
-            </TextBlock>
-        </Border>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" WindowChrome.IsHitTestVisibleInChrome="True" Grid.Column="2" Grid.Row="0">
-        <Button Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" ToolTip="minimize" Style="{StaticResource WindowButtonStyle}">
-        <Button.Content>
-            <Grid Width="30" Height="25" RenderTransform="1,0,0,1,0,1">
-                <Path Data="M0,6 L8,6 Z" Width="8" Height="7" VerticalAlignment="Center" HorizontalAlignment="Center"
+
+                </Border.Style>
+                <TextBlock x:Name="TextConnection" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" Margin="0,1.2,37.6,0.4" >
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Text" Value="No Recording"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Recording}" Value="True">
+                                    <Setter Property="Text" Value="Active Recording"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Border>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" WindowChrome.IsHitTestVisibleInChrome="True" Grid.Column="6" Grid.Row="0">
+                <Button Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" ToolTip="minimize" Style="{StaticResource WindowButtonStyle}">
+                    <Button.Content>
+                        <Grid Width="30" Height="25" RenderTransform="1,0,0,1,0,1">
+                            <Path Data="M0,6 L8,6 Z" Width="8" Height="7" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                         Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="2"  />
-            </Grid>
-        </Button.Content>
-    </Button>
-    <Grid Margin="1,0,1,0">
-        <Button x:Name="Restore" Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}" ToolTip="restore" Visibility="Collapsed" Style="{StaticResource WindowButtonStyle}">
-            <Button.Content>
-                <Grid Width="30" Height="25" UseLayoutRounding="True" RenderTransform="1,0,0,1,.5,.5">
-                    <Path Data="M2,0 L8,0 L8,6 M0,3 L6,3 M0,2 L6,2 L6,8 L0,8 Z" Width="8" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Grid Margin="1,0,1,0">
+                    <Button x:Name="Restore" Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}" ToolTip="restore" Visibility="Collapsed" Style="{StaticResource WindowButtonStyle}">
+                        <Button.Content>
+                            <Grid Width="30" Height="25" UseLayoutRounding="True" RenderTransform="1,0,0,1,.5,.5">
+                                <Path Data="M2,0 L8,0 L8,6 M0,3 L6,3 M0,2 L6,2 L6,8 L0,8 Z" Width="8" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                             Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="1"  />
-                </Grid>
-            </Button.Content>
-        </Button>
-        <Button x:Name="Maximize" Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" ToolTip="maximize" Style="{StaticResource WindowButtonStyle}">
-            <Button.Content>
-                <Grid Width="31" Height="25">
-                    <Path Data="M0,1 L9,1 L9,8 L0,8 Z" Width="9" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="Maximize" Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" ToolTip="maximize" Style="{StaticResource WindowButtonStyle}">
+                        <Button.Content>
+                            <Grid Width="31" Height="25">
+                                <Path Data="M0,1 L9,1 L9,8 L0,8 Z" Width="9" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                             Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="2"  />
+                            </Grid>
+                        </Button.Content>
+                    </Button>
                 </Grid>
-            </Button.Content>
-        </Button>
-    </Grid>
-    <Button Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}" ToolTip="close"  Style="{StaticResource WindowButtonStyle}">
-        <Button.Content>
-            <Grid Width="30" Height="25" RenderTransform="1,0,0,1,0,1">
-                <Path Data="M0,0 L8,7 M8,0 L0,7 Z" Width="8" Height="7" VerticalAlignment="Center" HorizontalAlignment="Center"
+                <Button Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}" ToolTip="close"  Style="{StaticResource WindowButtonStyle}">
+                    <Button.Content>
+                        <Grid Width="30" Height="25" RenderTransform="1,0,0,1,0,1">
+                            <Path Data="M0,0 L8,7 M8,0 L0,7 Z" Width="8" Height="7" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                         Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="1.5"  />
-            </Grid>
-        </Button.Content>
-    </Button>
-    </StackPanel>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
         
 
 
-    <Grid x:Name="Main_Grid" Grid.Row="1" Background="White">
-        <Slider Value="{Binding Staubli_A1_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" />
-        <Slider Value="{Binding Staubli_A2_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,30,0,0"/>
-        <Slider Value="{Binding Staubli_A3_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,60,0,0"/>
-        <Slider Value="{Binding Staubli_A4_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,90,0,0"/>
-        <Slider Value="{Binding Staubli_A5_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,120,0,0"/>
-        <Grid Name="boxcontrol" Height="81" VerticalAlignment="Top" Margin="0,150,0,0" Visibility="Hidden">
-            <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxheigth}" Margin="10,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
-            <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxwidth}" Margin="99,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
-            <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxlength}" Margin="188,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
+        <Grid x:Name="Main_Grid" Grid.Row="1" Background="White">
+            <Slider Value="{Binding Staubli_A1_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" />
+            <Slider Value="{Binding Staubli_A2_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,30,0,0"/>
+            <Slider Value="{Binding Staubli_A3_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,60,0,0"/>
+            <Slider Value="{Binding Staubli_A4_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,90,0,0"/>
+            <Slider Value="{Binding Staubli_A5_angle}" Maximum="180" Minimum="-180" Height="29" VerticalAlignment="Top" Margin="0,120,0,0"/>
+            <Grid Name="boxcontrol" Height="81" VerticalAlignment="Top" Margin="0,150,0,0" Visibility="Hidden">
+                <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxheigth}" Margin="10,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
+                <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxwidth}" Margin="99,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
+                <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxlength}" Margin="188,8,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
 
-            <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxX}" Margin="10,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
-            <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxY}" Margin="99,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
-            <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxZ}" Margin="188,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
-        </Grid>
+                <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxX}" Margin="10,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
+                <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxY}" Margin="99,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
+                <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxZ}" Margin="188,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
+            </Grid>
             <ListView x:Name="ConsoleOutput" Height="300" BorderBrush="Transparent" Width="400" Opacity="0.8" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Margin="0,150,0,0" Foreground="#FF505050" FontFamily="Segoe UI Light"></ListView>
-                <helix:HelixViewport3D Margin="0,150,0,0" x:Name="m_helix_viewport" ZoomExtentsWhenLoaded="True" CameraRotationMode="Trackball" ModelUpDirection="0,0,1">
-            <helix:SunLight/>
+            <helix:HelixViewport3D Margin="0,150,0,0" x:Name="m_helix_viewport" ZoomExtentsWhenLoaded="True" CameraRotationMode="Trackball" ModelUpDirection="0,0,1">
+                <helix:SunLight/>
 
-            <ModelVisual3D Content="{Binding MyStaubli}"></ModelVisual3D>
-            <!--<ModelVisual3D Content="{Binding CurrentModel}"/>-->
-            <!--<helix:FileModelVisual3D Source="{Binding CurrentModelPath, Mode=TwoWay}" ModelLoaded="ModelLoaded"/>-->
-            <!--<helix:Expander3D Expansion="{Binding Expansion}" Content="{Binding CurrentModel}"/>-->
-            <!-- <helix:HelixViewport3D.Triggers>
+                <ModelVisual3D Content="{Binding MyStaubli}"></ModelVisual3D>
+                <!--<ModelVisual3D Content="{Binding CurrentModel}"/>-->
+                <!--<helix:FileModelVisual3D Source="{Binding CurrentModelPath, Mode=TwoWay}" ModelLoaded="ModelLoaded"/>-->
+                <!--<helix:Expander3D Expansion="{Binding Expansion}" Content="{Binding CurrentModel}"/>-->
+                <!-- <helix:HelixViewport3D.Triggers>
                 <EventTrigger 
             </helix:HelixViewport3D.Triggers>-->
 
-        </helix:HelixViewport3D>
+            </helix:HelixViewport3D>
+        </Grid>
     </Grid>
- </Grid>
-    
+
 </Window>

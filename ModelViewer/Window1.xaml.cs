@@ -30,8 +30,8 @@ namespace ModelViewer
         System.Windows.Threading.DispatcherTimer _update_timer;
 
         public ModbusClient modbusClient;
-        public string ip_modbus = "127.0.0.1";
-
+        public string ip_modbus ;
+        public bool connected;
     
         static int counter;
         //the small box to find pints in the 3D World
@@ -158,8 +158,8 @@ namespace ModelViewer
             //this.MyKUKA = KUKA_KR90;
             this.MyStaubli = Staubli_TX60;
 
-           
-           
+            connected = false;
+            ip_modbus = "222.1.0.2";
             Main_Grid.DataContext = this;
 
             modbusClient = new ModbusClient(ip_modbus, 502); 
@@ -280,32 +280,59 @@ namespace ModelViewer
         {
             try
             {
-                ConsoleOutput.Items.Add("Try to Connect to IP : " + ip_modbus + " Port 502 " + DateTime.Now);
-                if (ConsoleOutput.Items.Count >= 15)
+
+                if (connected == true)
                 {
-                    ConsoleOutput.Items.RemoveAt(0);
+                   
+                    //Ip-Address and Port of Modbus-TCP-Server
+                    // 
+                    modbusClient.Connect();
+                    //Read 10 Coils from Server, starting with address 10
+                    int[] readHoldingRegisters = modbusClient.ReadHoldingRegisters(0, 6);
+                    Staubli_move_a1(readHoldingRegisters[0]);
+                    Staubli_move_a2(readHoldingRegisters[1]);
+                    Staubli_move_a3(readHoldingRegisters[2]);
+                    Staubli_move_a4(readHoldingRegisters[3]);
+                    Staubli_move_a5(readHoldingRegisters[4]);
+                    Staubli_move_a6(readHoldingRegisters[5]); 
+                     modbusClient.Disconnect();
+                     ConsoleOutput.Items.Add("J1: " + readHoldingRegisters[0].ToString() + " J2: " + readHoldingRegisters[1].ToString() + " J3: " + readHoldingRegisters[2].ToString() + " J4: " + readHoldingRegisters[3].ToString() + " J5: " + readHoldingRegisters[4].ToString() + " J6: " + readHoldingRegisters[5].ToString());
+                    if (ConsoleOutput.Items.Count >= 15)
+                    {
+                        ConsoleOutput.Items.RemoveAt(0);
+                    }
                 }
-                   //Ip-Address and Port of Modbus-TCP-Server
-               // modbusClient.Connect();
-                this.TextConnection.Text = "Connected to Server";
-                this.Connected.BorderBrush = Brushes.Green;
-                //Read 10 Coils from Server, starting with address 10
-                int[] readHoldingRegisters = modbusClient.ReadHoldingRegisters(0, 6);
-                Staubli_move_a1(readHoldingRegisters[0]);
-                Staubli_move_a2(readHoldingRegisters[1]);
-                Staubli_move_a3(readHoldingRegisters[2]);
-                Staubli_move_a4(readHoldingRegisters[3]);
-                Staubli_move_a5(readHoldingRegisters[4]);
-                Staubli_move_a6(readHoldingRegisters[5]);
-                modbusClient.Disconnect();
             }
             catch (Exception ex)
             {
                 this.TextConnection.Text = "Connection Refused to Server";
                 this.Connected.BorderBrush = Brushes.Red;
+                connected = false;
                 //MessageBox.Show(ex.StackTrace);
             }
 
+        }
+
+        private void buttonconnect_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+            ip_modbus = IPControl.Text;
+            ConsoleOutput.Items.Add("Try to Connect to IP : " + ip_modbus + " Port 502 " + DateTime.Now);
+            modbusClient = new ModbusClient(ip_modbus, 502);
+            modbusClient.Connect();
+            this.TextConnection.Text = "Connected to Server";
+            this.Connected.BorderBrush = Brushes.Green;
+            ConsoleOutput.Items.Add("Connected succesfull to IP : " + ip_modbus + " Port 502 ");
+            connected = true;
+              }
+            catch (Exception ex)
+            {
+                this.TextConnection.Text = "Connection Refused to Server";
+                this.Connected.BorderBrush = Brushes.Red;
+                connected = false;
+                //MessageBox.Show(ex.StackTrace);
+            }
         }
 
         
