@@ -34,6 +34,8 @@ namespace ModelViewer
         public bool connected;
     
         static int counter;
+        static int multiplier = 44;
+        static int range = 32000;
         //the small box to find pints in the 3D World
         BoxVisual3D mybox;
 
@@ -289,12 +291,61 @@ namespace ModelViewer
                     modbusClient.Connect();
                     //Read 10 Coils from Server, starting with address 10
                     int[] readHoldingRegisters = modbusClient.ReadHoldingRegisters(0, 6);
-                    Staubli_move_a1(readHoldingRegisters[0]);
-                    Staubli_move_a2(readHoldingRegisters[1]);
-                    Staubli_move_a3(readHoldingRegisters[2]);
-                    Staubli_move_a4(readHoldingRegisters[3]);
-                    Staubli_move_a5(readHoldingRegisters[4]);
-                    Staubli_move_a6(readHoldingRegisters[5]); 
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (readHoldingRegisters[i] < range/2)
+                        {
+                            switch(i)
+                            {
+                                case 0 :
+                                    Staubli_move_a1(readHoldingRegisters[i] / multiplier);
+                                break;
+                                case 1:
+                                Staubli_move_a2(readHoldingRegisters[i] / multiplier);
+                                break;
+                                case 2:
+                                Staubli_move_a3(readHoldingRegisters[i] / multiplier);
+                                break;
+                                case 3:
+                                Staubli_move_a4(readHoldingRegisters[i] / multiplier);
+                                break;
+                                case 4:
+                                Staubli_move_a5(readHoldingRegisters[i] / multiplier);
+                                break;
+                                case 5:
+                                Staubli_move_a6(readHoldingRegisters[i] / multiplier);
+                                break;
+
+                            }
+                        }
+                        else
+                        {
+                            switch (i)
+                            {
+                                case 0:
+                                    Staubli_move_a1((readHoldingRegisters[i] - range) / multiplier);
+                                    break;
+                                case 1:
+                                    Staubli_move_a2((readHoldingRegisters[i] - range) / multiplier);
+                                    break;
+                                case 2:
+                                    Staubli_move_a3((readHoldingRegisters[i] - range) / multiplier);
+                                    break;
+                                case 3:
+                                    Staubli_move_a4((readHoldingRegisters[i] - range) / multiplier);
+                                    break;
+                                case 4:
+                                    Staubli_move_a5((readHoldingRegisters[i] - range) / multiplier);
+                                    break;
+                                case 5:
+                                    Staubli_move_a6((readHoldingRegisters[i] - range) / multiplier);
+                                    break;
+
+                            }
+                            
+                        }
+                    }
+                  
                      modbusClient.Disconnect();
                     //Add Visual output
                      ConsoleOutput.Items.Add("J1: " + readHoldingRegisters[0].ToString() + " J2: " + readHoldingRegisters[1].ToString() + " J3: " + readHoldingRegisters[2].ToString() + " J4: " + readHoldingRegisters[3].ToString() + " J5: " + readHoldingRegisters[4].ToString() + " J6: " + readHoldingRegisters[5].ToString());
