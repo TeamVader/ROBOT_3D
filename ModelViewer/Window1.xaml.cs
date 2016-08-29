@@ -174,7 +174,7 @@ namespace ModelViewer
 
             _update_timer = new System.Windows.Threading.DispatcherTimer(DispatcherPriority.Render);
             _update_timer.Tick += new EventHandler(_update_timer_Tick);
-            _update_timer.Interval = new TimeSpan(0, 0, 0,0,100);
+            _update_timer.Interval = new TimeSpan(0, 0, 0,0,40);
             _update_timer.Start();
             
         }
