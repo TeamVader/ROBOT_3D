@@ -36,6 +36,12 @@ namespace ModelViewer
         static int counter;
         static int multiplier = 44;
         static int range = 32000;
+        double real_value_a1;
+        double real_value_a2;
+        double real_value_a3;
+        double real_value_a4;
+        double real_value_a5;
+        double real_value_a6;
         //the small box to find pints in the 3D World
         BoxVisual3D mybox;
 
@@ -298,22 +304,28 @@ namespace ModelViewer
                             switch(i)
                             {
                                 case 0 :
-                                    Staubli_move_a1(readHoldingRegisters[i] / multiplier);
+                                Staubli_move_a1((double)readHoldingRegisters[i] / multiplier);
+                                real_value_a1 = (double)readHoldingRegisters[i] / multiplier;
                                 break;
                                 case 1:
-                                Staubli_move_a2(readHoldingRegisters[i] / multiplier);
+                                Staubli_move_a2((double)readHoldingRegisters[i] / multiplier);
+                                real_value_a2 = (double)readHoldingRegisters[i] / multiplier;
                                 break;
                                 case 2:
-                                Staubli_move_a3(readHoldingRegisters[i] / multiplier);
+                                Staubli_move_a3((double)readHoldingRegisters[i] / multiplier);
+                                real_value_a3 = (double)readHoldingRegisters[i] / multiplier;
                                 break;
                                 case 3:
-                                Staubli_move_a4(readHoldingRegisters[i] / multiplier);
+                                Staubli_move_a4((double)readHoldingRegisters[i] / multiplier);
+                                real_value_a4 = (double)readHoldingRegisters[i] / multiplier;
                                 break;
                                 case 4:
-                                Staubli_move_a5(readHoldingRegisters[i] / multiplier);
+                                Staubli_move_a5((double)readHoldingRegisters[i] / multiplier);
+                                real_value_a5 = (double)readHoldingRegisters[i] / multiplier;
                                 break;
                                 case 5:
-                                Staubli_move_a6(readHoldingRegisters[i] / multiplier);
+                                Staubli_move_a6((double)readHoldingRegisters[i] / multiplier);
+                                real_value_a6 = (double)readHoldingRegisters[i] / multiplier;
                                 break;
 
                             }
@@ -323,22 +335,28 @@ namespace ModelViewer
                             switch (i)
                             {
                                 case 0:
-                                    Staubli_move_a1((readHoldingRegisters[i] - range) / multiplier);
+                                    Staubli_move_a1((double)(readHoldingRegisters[i] - range) / multiplier);
+                                    real_value_a1 = (double)(readHoldingRegisters[i] - range) / multiplier;
                                     break;
                                 case 1:
-                                    Staubli_move_a2((readHoldingRegisters[i] - range) / multiplier);
+                                    Staubli_move_a2((double)(readHoldingRegisters[i] - range) / multiplier);
+                                    real_value_a2 = (double)(readHoldingRegisters[i] - range) / multiplier;
                                     break;
                                 case 2:
-                                    Staubli_move_a3((readHoldingRegisters[i] - range) / multiplier);
+                                    Staubli_move_a3((double)(readHoldingRegisters[i] - range) / multiplier);
+                                    real_value_a3 = (double)(readHoldingRegisters[i] - range) / multiplier;
                                     break;
                                 case 3:
-                                    Staubli_move_a4((readHoldingRegisters[i] - range) / multiplier);
+                                    Staubli_move_a4((double)(readHoldingRegisters[i] - range) / multiplier);
+                                    real_value_a4 = (double)(readHoldingRegisters[i] - range) / multiplier;
                                     break;
                                 case 4:
-                                    Staubli_move_a5((readHoldingRegisters[i] - range) / multiplier);
+                                    Staubli_move_a5((double)(readHoldingRegisters[i] - range) / multiplier);
+                                    real_value_a5 = (double)(readHoldingRegisters[i] - range) / multiplier;
                                     break;
                                 case 5:
-                                    Staubli_move_a6((readHoldingRegisters[i] - range) / multiplier);
+                                    Staubli_move_a6((double)(readHoldingRegisters[i] - range) / multiplier);
+                                    real_value_a6 = (double)(readHoldingRegisters[i] - range) / multiplier;
                                     break;
 
                             }
@@ -348,7 +366,7 @@ namespace ModelViewer
                   
                      modbusClient.Disconnect();
                     //Add Visual output
-                     ConsoleOutput.Items.Add("J1: " + readHoldingRegisters[0].ToString() + " J2: " + readHoldingRegisters[1].ToString() + " J3: " + readHoldingRegisters[2].ToString() + " J4: " + readHoldingRegisters[3].ToString() + " J5: " + readHoldingRegisters[4].ToString() + " J6: " + readHoldingRegisters[5].ToString());
+                     ConsoleOutput.Items.Add("J1: " + real_value_a1.ToString("0.00") + " J2: " + real_value_a2.ToString("0.00") + " J3: " + real_value_a3.ToString("0.00") + " J4: " + real_value_a4.ToString("0.00") + " J5: " + real_value_a5.ToString("0.00") + " J6: " + real_value_a6.ToString("0.00"));
                     if (ConsoleOutput.Items.Count >= 15)
                     {
                         ConsoleOutput.Items.RemoveAt(0);
