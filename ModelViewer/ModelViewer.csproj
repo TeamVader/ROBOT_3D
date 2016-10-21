@@ -172,7 +172,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <Resource Include="app.config" />
     <None Include="Models\KUKA\KUKA_A1.3ds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -246,6 +246,7 @@
     <Content Include="EasyModbus.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Models\Stark_Industries_logo.png" />
     <Resource Include="modbus.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

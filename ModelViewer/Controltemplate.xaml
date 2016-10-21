@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:local="clr-namespace:ModelViewer" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
-                
+    <BitmapImage x:Key="SI" UriSource="Models/Stark_Industries_logo.png"/>         
     <Color x:Key="Grey">#FF696464</Color>
     <Style x:Key="ComboBoxFocusVisual">
         <Setter Property="Control.Template">

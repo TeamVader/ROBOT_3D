@@ -16,15 +16,15 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"></ColumnDefinition>
-                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="0" x:Name="Label_Title" Foreground="White" FontSize="12" Content="ROBOTIC SIMULATION" />
+            <Label VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="0" x:Name="Label_Title" Foreground="White" FontSize="20" Content="NextGenHMI" />
             <modelViewer:IPControl x:Name="IPControl" Grid.Row="0" Grid.Column="2" Width="200" Foreground="White" Height="20" Background="Transparent" ></modelViewer:IPControl>
             <Button x:Name="buttonconnect" Grid.Column="3"  Content="Connect" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100"  OpacityMask="{x:Null}" Opacity="0.8"  Style="{StaticResource Bluebutton}" FontWeight="Normal" FontFamily="SansSerif" Foreground="#FFFCFCFC"  Height="18" Grid.Row="0" Click="buttonconnect_Click"/>
             <Label Grid.Column="1" Content="IP Adress" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" Width="80"></Label>
@@ -107,6 +107,7 @@
                 <xctk:DoubleUpDown Increment="0.01" Value="{Binding boxZ}" Margin="188,44,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
             </Grid>
             <ListView x:Name="ConsoleOutput" Height="300" BorderBrush="Transparent" Width="400" Opacity="0.8" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Margin="0,150,0,0" Foreground="#FF505050" FontFamily="Segoe UI Light"></ListView>
+            <Image RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Left" Source="{StaticResource SI}" Height="80" VerticalAlignment="Bottom" Width="450"/>
             <helix:HelixViewport3D Margin="0,150,0,0" x:Name="m_helix_viewport" ZoomExtentsWhenLoaded="True" CameraRotationMode="Trackball" ModelUpDirection="0,0,1">
                 <helix:SunLight/>
 
