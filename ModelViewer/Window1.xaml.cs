@@ -387,14 +387,23 @@ namespace ModelViewer
         {
             try
             {
-            ip_modbus = IPControl.Text;
-            ConsoleOutput.Items.Add("Try to Connect to IP : " + ip_modbus + " Port 502 " + DateTime.Now);
-            modbusClient = new ModbusClient(ip_modbus, 502);
-            modbusClient.Connect();
-            this.TextConnection.Text = "Connected to Server";
-            this.Connected.BorderBrush = Brushes.Green;
-            ConsoleOutput.Items.Add("Connected succesfull to IP : " + ip_modbus + " Port 502 ");
-            connected = true;
+                if (modbusClient.Available(500))
+                {
+                    ip_modbus = IPControl.Text;
+                    ConsoleOutput.Items.Add("Try to Connect to IP : " + ip_modbus + " Port 502 " + DateTime.Now);
+                    modbusClient = new ModbusClient(ip_modbus, 502);
+                    modbusClient.Connect();
+                    this.TextConnection.Text = "Connected to Server";
+                    this.Connected.BorderBrush = Brushes.Green;
+                    ConsoleOutput.Items.Add("Connected succesfull to IP : " + ip_modbus + " Port 502 ");
+                    connected = true;
+                }
+                else
+                {
+                    this.TextConnection.Text = "Connection Refused to Server";
+                    this.Connected.BorderBrush = Brushes.Red;
+                    connected = false;
+                }
               }
             catch (Exception ex)
             {
